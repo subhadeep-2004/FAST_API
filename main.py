@@ -56,20 +56,22 @@ def convertToString(p):
         print(p)
         return str(p)  # Convert other data types to string
 
-
 def function(disease):
-  
+    d = df2[df2["Disease"] == disease]
+    if not d.empty:
+        details = d["Description"].values[0]  # Extract the first value
+        des = convertToString(details)
+    else:
+        des = ""
 
-    descrip = df2[ df2["Disease"]== disease ]
-    details = descrip["Description"]
-    des = convertToString( details )
-    p_ = df3 [ df3["Disease"]== disease ]
-    p_1 = convertToString(p_["Precaution_1"])
-    p_2 = convertToString(p_["Precaution_2"])
-    p_3 =  convertToString(p_["Precaution_3"])
-    p_4 =  convertToString(p_["Precaution_4"])
+    p_ = df3[df3["Disease"] == disease]
+    
+    p_1 = convertToString(p_["Precaution_1"].values[0]) if not p_["Precaution_1"].empty and isinstance(p_["Precaution_1"].values[0], str) else ""
+    p_2 = convertToString(p_["Precaution_2"].values[0]) if not p_["Precaution_2"].empty and isinstance(p_["Precaution_2"].values[0], str) else ""
+    p_3 = convertToString(p_["Precaution_3"].values[0]) if not p_["Precaution_3"].empty and isinstance(p_["Precaution_3"].values[0], str) else ""
+    p_4 = convertToString(p_["Precaution_4"].values[0]) if not p_["Precaution_4"].empty and isinstance(p_["Precaution_4"].values[0], str) else ""
 
-    return des,p_1,p_2,p_3,p_4
+    return des, p_1, p_2, p_3, p_4
 
 
 @app.post('/disease')
