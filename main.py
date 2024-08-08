@@ -88,11 +88,15 @@ def predict(data: Model):
     prediction = dis_ind[rfc.predict(arr)[0]]
     print(prediction)
     des,p_1,p_2,p_3,p_4 = function(prediction)
-    l=list();
-    l.append(p_1);
-    l.append(p_2)
-    l.append(p_3)
-    l.append(p_4)
+    l = []
+    if p_1:
+        l.append(p_1)
+    if p_2:
+        l.append(p_2)
+    if p_3:
+        l.append(p_3)
+    if p_4:
+        l.append(p_4)
     return {'prediction': prediction ,'description':des,'precaution':l}
 
 
