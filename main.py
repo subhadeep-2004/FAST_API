@@ -48,12 +48,14 @@ def index():
 # 5. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted disease
 def convertToString(p):
-   
-    string= ""
-    for i in p:
-        string = string + i
+    if isinstance(p, str):  # If p is already a string
+        return p
+    elif isinstance(p, (int, float)):  # Convert number to string
+        return str(p)
+    else:
+        print(p)
+        return str(p)  # Convert other data types to string
 
-    return string
 
 def function(disease):
   
